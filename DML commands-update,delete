@@ -1,0 +1,45 @@
+mysql> update mentees set Dept="BME" where Regno=192011079;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-----------+---------+------+---------+------------+
+| Regno     | name    | dept | address | fathername |
++-----------+---------+------+---------+------------+
+| 192011090 | gowtham | CSE  | nellore | moorthi    |
+| 192011079 | arun    | BME  | nellore | muthu      |
+| 192011095 | harish  | ECE  | madurai | kannan     |
+| 192011080 | harini  | ECE  | tanjore | velu       |
+| 192211080 | dhivya  | ECE  | tirupur | ramesh     |
++-----------+---------+------+---------+------------+
+5 rows in set (0.01 sec)
+
+mysql> update mentees set address="chennai"where Dept="CSE";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-----------+---------+------+---------+------------+
+| Regno     | name    | dept | address | fathername |
++-----------+---------+------+---------+------------+
+| 192011090 | gowtham | CSE  | chennai | moorthi    |
+| 192011079 | arun    | BME  | nellore | muthu      |
+| 192011095 | harish  | ECE  | madurai | kannan     |
+| 192011080 | harini  | ECE  | tanjore | velu       |
+| 192211080 | dhivya  | ECE  | tirupur | ramesh     |
++-----------+---------+------+---------+------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from mentees where fathername="velu";
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from mentees;
++-----------+---------+------+---------+------------+
+| Regno     | name    | dept | address | fathername |
++-----------+---------+------+---------+------------+
+| 192011090 | gowtham | CSE  | chennai | moorthi    |
+| 192011079 | arun    | BME  | nellore | muthu      |
+| 192011095 | harish  | ECE  | madurai | kannan     |
+| 192211080 | dhivya  | ECE  | tirupur | ramesh     |
++-----------+---------+------+---------+------------+
+4 rows in set (0.00 sec)
