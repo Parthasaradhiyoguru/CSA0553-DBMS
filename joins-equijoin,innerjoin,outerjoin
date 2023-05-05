@@ -1,0 +1,160 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| college            |
+| hospital           |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use college;
+Database changed
+mysql> select*from mentees;
++-----------+---------+------+---------+------------+-------+---------+
+| Regno     | name    | dept | address | fathername | marks | subject |
++-----------+---------+------+---------+------------+-------+---------+
+| 192011090 | gowtham | CSE  | chennai | moorthi    |    99 | DBMS    |
+| 192011079 | arun    | BME  | nellore | muthu      |    91 | BIOEVS  |
+| 192011095 | harish  | ECE  | madurai | kannan     |    95 | PDSD    |
+| 192211080 | dhivya  | ECE  | tirupur | ramesh     |    91 | PDSD    |
++-----------+---------+------+---------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> create table mdept(deptid int(5),deptname varchar(20),rollno int(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into mdept values(1,"CSE",192011090);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mdept values(2,"ECE",192011079);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mdept values(3,"ECE",192011010);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> update mdept set deptid=3 where rollno=192011010;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select*from mentees;
++-----------+---------+------+---------+------------+-------+---------+
+| Regno     | name    | dept | address | fathername | marks | subject |
++-----------+---------+------+---------+------------+-------+---------+
+| 192011090 | gowtham | CSE  | chennai | moorthi    |    99 | DBMS    |
+| 192011079 | arun    | BME  | nellore | muthu      |    91 | BIOEVS  |
+| 192011095 | harish  | ECE  | madurai | kannan     |    95 | PDSD    |
+| 192211080 | dhivya  | ECE  | tirupur | ramesh     |    91 | PDSD    |
++-----------+---------+------+---------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mdept;
++--------+----------+-----------+
+| deptid | deptname | rollno    |
++--------+----------+-----------+
+|      1 | CSE      | 192011090 |
+|      2 | ECE      | 192011079 |
+|      3 | ECE      | 192011010 |
++--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select deptid,deptname from mdept,mentees where mentees.regno=mdept.rollno;
++--------+----------+
+| deptid | deptname |
++--------+----------+
+|      1 | CSE      |
+|      2 | ECE      |
++--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select deptid,dptname,rollno from mdept m,mentees m1 where m1.regno=m.rollno;
+ERROR 1054 (42S22): Unknown column 'dptname' in 'field list'
+mysql> select deptid,deptname,rollno from mdept,mentees where mentees.regno=mdept.rollno;
++--------+----------+-----------+
+| deptid | deptname | rollno    |
++--------+----------+-----------+
+|      1 | CSE      | 192011090 |
+|      2 | ECE      | 192011079 |
++--------+----------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select name,deptid,deptname,rollno from mdept m,mentees m1 where m1.regno=m.rollno;
++---------+--------+----------+-----------+
+| name    | deptid | deptname | rollno    |
++---------+--------+----------+-----------+
+| gowtham |      1 | CSE      | 192011090 |
+| arun    |      2 | ECE      | 192011079 |
++---------+--------+----------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select name,dept,deptid,deptname,rollno from mdept,mentees where mentees.regno=mdeot.rollno;
+ERROR 1054 (42S22): Unknown column 'mdeot.rollno' in 'where clause'
+mysql> select name,dept,deptid,deptname,rollno from mdept,mentees where mentees.regno=mdept.roll=mentees.regno;
+ERROR 1054 (42S22): Unknown column 'mdept.roll' in 'where clause'
+mysql> select name,deptid,deptname,rollno from mdept,mentees where mentees.regno=mdept.rollno;
++---------+--------+----------+-----------+
+| name    | deptid | deptname | rollno    |
++---------+--------+----------+-----------+
+| gowtham |      1 | CSE      | 192011090 |
+| arun    |      2 | ECE      | 192011079 |
++---------+--------+----------+-----------+
+2 rows in set (0.00 sec)
+
+
+mysql> select rollno,deptname,name,address from mdept left outer join mentees on mdept.rollno=mentees.regno;
++-----------+----------+---------+---------+
+| rollno    | deptname | name    | address |
++-----------+----------+---------+---------+
+| 192011090 | CSE      | gowtham | chennai |
+| 192011079 | ECE      | arun    | nellore |
+| 192011010 | ECE      | NULL    | NULL    |
++-----------+----------+---------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select rollno,deptname,name,address from mdept right outer join mentes on mdept.rollno=mentees.regno;
+ERROR 1146 (42S02): Table 'college.mentes' doesn't exist
+mysql> select rollno,deptname,name,address from mdept right outer join mentees on mdept.rollno=mentees.regno;
++-----------+----------+---------+---------+
+| rollno    | deptname | name    | address |
++-----------+----------+---------+---------+
+| 192011090 | CSE      | gowtham | chennai |
+| 192011079 | ECE      | arun    | nellore |
+|      NULL | NULL     | harish  | madurai |
+|      NULL | NULL     | dhivya  | tirupur |
++-----------+----------+---------+---------+
+4 rows in set (0.00 sec)
+
+
+mysql> insert into mdept values(4,"ENE",192011095);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mdept values(5,"COM",192211080);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select rollno,deptname,name,address from mdept right outer join mentees on mdept.rollno=mentees.regno;
++-----------+----------+---------+---------+
+| rollno    | deptname | name    | address |
++-----------+----------+---------+---------+
+| 192011090 | CSE      | gowtham | chennai |
+| 192011079 | ECE      | arun    | nellore |
+| 192011095 | ENE      | harish  | madurai |
+| 192211080 | COM      | dhivya  | tirupur |
++-----------+----------+---------+---------+
+4 rows in set (0.00 sec)
