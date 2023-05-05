@@ -1,0 +1,127 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| college            |
+| hospital           |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use college;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| data1             |
+| medicalcollege    |
+| mentees           |
+| mentorlist        |
+| student           |
+| student2          |
+| student3          |
+| studentdepartment |
++-------------------+
+8 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-----------+---------+------+---------+------------+
+| Regno     | name    | dept | address | fathername |
++-----------+---------+------+---------+------------+
+| 192011090 | gowtham | CSE  | chennai | moorthi    |
+| 192011079 | arun    | BME  | nellore | muthu      |
+| 192011095 | harish  | ECE  | madurai | kannan     |
+| 192211080 | dhivya  | ECE  | tirupur | ramesh     |
++-----------+---------+------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where dept='ECE';
++-----------+--------+------+---------+------------+
+| Regno     | name   | dept | address | fathername |
++-----------+--------+------+---------+------------+
+| 192011095 | harish | ECE  | madurai | kannan     |
+| 192211080 | dhivya | ECE  | tirupur | ramesh     |
++-----------+--------+------+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentees where name="gowtham";
++-----------+---------+------+---------+------------+
+| Regno     | name    | dept | address | fathername |
++-----------+---------+------+---------+------------+
+| 192011090 | gowtham | CSE  | chennai | moorthi    |
++-----------+---------+------+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> alter table mentees add marks int(3);
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update mentees set marks=99 where dept="CSE";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set marks=91 where dept="BME";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set marks=91 where name="dhivya";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set marks=95 where name="harish";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-----------+---------+------+---------+------------+-------+
+| Regno     | name    | dept | address | fathername | marks |
++-----------+---------+------+---------+------------+-------+
+| 192011090 | gowtham | CSE  | chennai | moorthi    |    99 |
+| 192011079 | arun    | BME  | nellore | muthu      |    91 |
+| 192011095 | harish  | ECE  | madurai | kannan     |    95 |
+| 192211080 | dhivya  | ECE  | tirupur | ramesh     |    91 |
++-----------+---------+------+---------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where name like 'g%';
++-----------+---------+------+---------+------------+-------+
+| Regno     | name    | dept | address | fathername | marks |
++-----------+---------+------+---------+------------+-------+
+| 192011090 | gowtham | CSE  | chennai | moorthi    |    99 |
++-----------+---------+------+---------+------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select*from mentees where dept like'%s%';
++-----------+---------+------+---------+------------+-------+
+| Regno     | name    | dept | address | fathername | marks |
++-----------+---------+------+---------+------------+-------+
+| 192011090 | gowtham | CSE  | chennai | moorthi    |    99 |
++-----------+---------+------+---------+------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select*from mentees where address like '%i';
++-----------+---------+------+---------+------------+-------+
+| Regno     | name    | dept | address | fathername | marks |
++-----------+---------+------+---------+------------+-------+
+| 192011090 | gowtham | CSE  | chennai | moorthi    |    99 |
+| 192011095 | harish  | ECE  | madurai | kannan     |    95 |
++-----------+---------+------+---------+------------+-------+
+2 rows in set (0.00 sec)
