@@ -1,0 +1,102 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| college            |
+| hospital           |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use college;
+Database changed
+mysql> select*from collegefaculty;
++-----------+---------+------+---------+------------+
+| regno     | name    | dept | address | fathername |
++-----------+---------+------+---------+------------+
+| 192011090 | gowtham | cse  | chennai | moorthi    |
+| 192011079 | arun    | BME  | nellore | muthu      |
+| 192011095 | harish  | ece  | madurai | kannan     |
+| 192211080 | dhivya  | ece  | tirupur | ramesh     |
++-----------+---------+------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select*from collegefaculty where dept='ece';
++-----------+--------+------+---------+------------+
+| regno     | name   | dept | address | fathername |
++-----------+--------+------+---------+------------+
+| 192011095 | harish | ece  | madurai | kannan     |
+| 192211080 | dhivya | ece  | tirupur | ramesh     |
++-----------+--------+------+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select*from collegefaculty where name="gowtham";
++-----------+---------+------+---------+------------+
+| regno     | name    | dept | address | fathername |
++-----------+---------+------+---------+------------+
+| 192011090 | gowtham | cse  | chennai | moorthi    |
++-----------+---------+------+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> alter table collegefaculty add marks int(3);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update collegefaculty list where marks=99 where dept="cse";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version
+ for the right syntax to use near 'where marks=99 where dept="cse"' at line 1
+mysql> update collegefaculty set marks=99 where dept="cse";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update collegefaculty set marks=91 where dept="bme";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update collegefaculty set marks=91 where name="dhivya";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update collegefaculty set marks=95 where name="harish";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from collegefaculty;
++-----------+---------+------+---------+------------+-------+
+| regno     | name    | dept | address | fathername | marks |
++-----------+---------+------+---------+------------+-------+
+| 192011090 | gowtham | cse  | chennai | moorthi    |    99 |
+| 192011079 | arun    | BME  | nellore | muthu      |    91 |
+| 192011095 | harish  | ece  | madurai | kannan     |    95 |
+| 192211080 | dhivya  | ece  | tirupur | ramesh     |    91 |
++-----------+---------+------+---------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select*from collegefaculty where name like 'G%';
++-----------+---------+------+---------+------------+-------+
+| regno     | name    | dept | address | fathername | marks |
++-----------+---------+------+---------+------------+-------+
+| 192011090 | gowtham | cse  | chennai | moorthi    |    99 |
++-----------+---------+------+---------+------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select*from collegefaculty where dept like '%s%';
++-----------+---------+------+---------+------------+-------+
+| regno     | name    | dept | address | fathername | marks |
++-----------+---------+------+---------+------------+-------+
+| 192011090 | gowtham | cse  | chennai | moorthi    |    99 |
++-----------+---------+------+---------+------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select*from collegefaculty where address like '%i';
++-----------+---------+------+---------+------------+-------+
+| regno     | name    | dept | address | fathername | marks |
++-----------+---------+------+---------+------------+-------+
+| 192011090 | gowtham | cse  | chennai | moorthi    |    99 |
+| 192011095 | harish  | ece  | madurai | kannan     |    95 |
++-----------+---------+------+---------+------------+-------+
+2 rows in set (0.00 sec)
