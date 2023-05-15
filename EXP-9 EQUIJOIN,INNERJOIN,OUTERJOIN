@@ -1,0 +1,97 @@
+mysql> use college;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| collegefaculty    |
+| course3           |
+| course5           |
+| data1             |
+| faculty1          |
+| faculty9          |
+| facultyinfo       |
+| marks_view        |
+| mdept             |
+| medicalcollege    |
+| mentees           |
+| mentees1          |
+| mentorlist        |
+| per               |
+| student           |
+| student2          |
+| student3          |
+| studentdata1      |
+| studentdata9      |
+| studentdepartment |
+| sub1              |
+| sub2              |
++-------------------+
+22 rows in set (0.00 sec)
+
+mysql> create table data5(facno int(9),facname varchar(10),deptno int(8),deptname varchar(6));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into data5 values(1,"sam","1","AI");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into data5 values(2,"smitha","1","AI");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into data5 values(3,"aana","1","AI");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into data5 values(4,"sam","2","csc");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into data5 values(1,"smitha","2","csc");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into data5 values(3,"smith","2","csc");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into data5 values(4,"aana","3","IT");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into data5 values(1,"sam","3","IT");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into data5 values(1,"smitha","3","IT");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into data5 values(2,"smith","4","ece");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into data5 values(3,"aana","4","ece");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from data5;
++-------+---------+--------+----------+
+| facno | facname | deptno | deptname |
++-------+---------+--------+----------+
+|     1 | sam     |      1 | AI       |
+|     2 | smitha  |      1 | AI       |
+|     3 | aana    |      1 | AI       |
+|     4 | sam     |      2 | csc      |
+|     1 | smitha  |      2 | csc      |
+|     3 | smith   |      2 | csc      |
+|     4 | aana    |      3 | IT       |
+|     1 | sam     |      3 | IT       |
+|     1 | smitha  |      3 | IT       |
+|     2 | smith   |      4 | ece      |
+|     3 | aana    |      4 | ece      |
++-------+---------+--------+----------+
+11 rows in set (0.00 sec)
+
+mysql> select *from data5 where name="sam";
+ERROR 1054 (42S22): Unknown column 'name' in 'where clause'
+mysql> select*from data5 where facno="1";
++-------+---------+--------+----------+
+| facno | facname | deptno | deptname |
++-------+---------+--------+----------+
+|     1 | sam     |      1 | AI       |
+|     1 | smitha  |      2 | csc      |
+|     1 | sam     |      3 | IT       |
+|     1 | smitha  |      3 | IT       |
++-------+---------+--------+----------+
+4 rows in set (0.00 sec)
