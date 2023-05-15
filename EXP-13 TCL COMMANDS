@@ -1,0 +1,170 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| college            |
+| hospital           |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use college;
+Database changed
+mysql> CREATE TABLE class8(
+    -> ID INT,
+    -> First_Name VARCHAR(255),
+    -> Last_Name VARCHAR(255),
+    -> Date_Of_Birth date,
+    -> Place_Of_Birth VARCHAR(255),
+    -> Country VARCHAR(255),
+    -> PRIMARY KEY (ID)
+    -> );
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into class8 values(1,'ram','kumar',DATE('1981-12-05'),'Delhi','India');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into class8 values(2,'charan','kumar',DATE('1986-12-05'),'Capetown','SouthAfrica');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into class8 values(3,'hari','krishna',DATE('1978-11-07'),'Matale','Srilanka');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into class8 values(4,'ravi','teja',DATE('1987-12-09'),'Delhi','India');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into class8 values(5,'ram','charan',DATE('1983-09-08'),'Nagpur','India');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into class8 values(6,'ravi','sastri',DATE('1987-10-06'),'Nagpur','India');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into class8 values(7,'rama','raju',DATE('1954-07-02'),'Burnley','England');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> Delete from class8 where ID=7;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT*FROM class8;
++----+------------+-----------+---------------+----------------+-------------+
+| ID | First_Name | Last_Name | Date_Of_Birth | Place_Of_Birth | Country     |
++----+------------+-----------+---------------+----------------+-------------+
+|  1 | ram        | kumar     | 1981-12-05    | Delhi          | India       |
+|  2 | charan     | kumar     | 1986-12-05    | Capetown       | SouthAfrica |
+|  3 | hari       | krishna   | 1978-11-07    | Matale         | Srilanka    |
+|  4 | ravi       | teja      | 1987-12-09    | Delhi          | India       |
+|  5 | ram        | charan    | 1983-09-08    | Nagpur         | India       |
+|  6 | ravi       | sastri    | 1987-10-06    | Nagpur         | India       |
++----+------------+-----------+---------------+----------------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> Delete from class8 where ID=6;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT*FROM class8;
++----+------------+-----------+---------------+----------------+-------------+
+| ID | First_Name | Last_Name | Date_Of_Birth | Place_Of_Birth | Country     |
++----+------------+-----------+---------------+----------------+-------------+
+|  1 | ram        | kumar     | 1981-12-05    | Delhi          | India       |
+|  2 | charan     | kumar     | 1986-12-05    | Capetown       | SouthAfrica |
+|  3 | hari       | krishna   | 1978-11-07    | Matale         | Srilanka    |
+|  4 | ravi       | teja      | 1987-12-09    | Delhi          | India       |
+|  5 | ram        | charan    | 1983-09-08    | Nagpur         | India       |
++----+------------+-----------+---------------+----------------+-------------+
+5 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT*FROM class8;
++----+------------+-----------+---------------+----------------+-------------+
+| ID | First_Name | Last_Name | Date_Of_Birth | Place_Of_Birth | Country     |
++----+------------+-----------+---------------+----------------+-------------+
+|  1 | ram        | kumar     | 1981-12-05    | Delhi          | India       |
+|  2 | charan     | kumar     | 1986-12-05    | Capetown       | SouthAfrica |
+|  3 | hari       | krishna   | 1978-11-07    | Matale         | Srilanka    |
+|  4 | ravi       | teja      | 1987-12-09    | Delhi          | India       |
+|  5 | ram        | charan    | 1983-09-08    | Nagpur         | India       |
++----+------------+-----------+---------------+----------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT*FROM class8;
++----+------------+-----------+---------------+----------------+-------------+
+| ID | First_Name | Last_Name | Date_Of_Birth | Place_Of_Birth | Country     |
++----+------------+-----------+---------------+----------------+-------------+
+|  1 | ram        | kumar     | 1981-12-05    | Delhi          | India       |
+|  2 | charan     | kumar     | 1986-12-05    | Capetown       | SouthAfrica |
+|  3 | hari       | krishna   | 1978-11-07    | Matale         | Srilanka    |
+|  4 | ravi       | teja      | 1987-12-09    | Delhi          | India       |
+|  5 | ram        | charan    | 1983-09-08    | Nagpur         | India       |
++----+------------+-----------+---------------+----------------+-------------+
+5 rows in set (0.01 sec)
+
+mysql> CREATE TABLE EMP(
+    -> FIRST_NAME CHAR(20)NOT NULL,
+    -> LAST_NAME CHAR(20),
+    -> AGE INT,
+    -> GENDER CHAR(1),
+    -> INCOME FLOAT);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO EMP VALUES
+    -> ('krishna','sharma',19,'M',2000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO EMP VALUES
+    -> ('raj','kandukuri',20,'M',7000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO EMP VALUES
+    -> ('shilpa','sri',18,'F',8000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT*FROM EMP;
++------------+-----------+------+--------+--------+
+| FIRST_NAME | LAST_NAME | AGE  | GENDER | INCOME |
++------------+-----------+------+--------+--------+
+| krishna    | sharma    |   19 | M      |   2000 |
+| raj        | kandukuri |   20 | M      |   7000 |
+| shilpa     | sri       |   18 | F      |   8000 |
++------------+-----------+------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> UPDATE EMP SET AGE=AGE+1;
+Query OK, 3 rows affected (0.00 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql>
+mysql> SAVEPOINT samplesavepoint;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO EMP values('Mac','Mohan',26,'M',2000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> ROLLBACK TO SAVEPOINT samplesavepoint;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT*FROM EMP;
++------------+-----------+------+--------+--------+
+| FIRST_NAME | LAST_NAME | AGE  | GENDER | INCOME |
++------------+-----------+------+--------+--------+
+| krishna    | sharma    |   20 | M      |   2000 |
+| raj        | kandukuri |   21 | M      |   7000 |
+| shilpa     | sri       |   19 | F      |   8000 |
++------------+-----------+------+--------+--------+
+3 rows in set (0.00 sec)
