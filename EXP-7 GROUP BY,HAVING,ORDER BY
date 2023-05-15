@@ -1,0 +1,87 @@
+mysql> create table sub2(courseno int(9),regno int (10),cousrename varchar(19),marks int(5));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into sub2 values(2,"192124132","cprogram","82");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into sub2 values(1,"192124145","maths","97");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sub2 values(5,"192124166","maths1","88");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select*from sub2;
++----------+-----------+------------+-------+
+| courseno | regno     | cousrename | marks |
++----------+-----------+------------+-------+
+|        2 | 192124132 | cprogram   |    82 |
+|        1 | 192124145 | maths      |    97 |
+|        5 | 192124166 | maths1     |    88 |
++----------+-----------+------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select*from sub1;
++------------+----------+
+| coursename | courseno |
++------------+----------+
+| AI         |        4 |
+| Cprogram   |        2 |
+| DBMS       |        2 |
+| maths      |        6 |
+| OS         |        3 |
++------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> create table course3(courseno int(11),regno int(10),cousename varchar(30),marks int(20),assesment int(20));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc course3;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| courseno  | int(11)     | YES  |     | NULL    |       |
+| regno     | int(10)     | YES  |     | NULL    |       |
+| cousename | varchar(30) | YES  |     | NULL    |       |
+| marks     | int(20)     | YES  |     | NULL    |       |
+| assesment | int(20)     | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into course3 values(3,"192124133","AI",58,10);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into course3 values(5,"192124177","IT",28,16);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into course3 values(4,"192124199","IT",49,13);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from course3;
++----------+-----------+-----------+-------+-----------+
+| courseno | regno     | cousename | marks | assesment |
++----------+-----------+-----------+-------+-----------+
+|        3 | 192124133 | AI        |    58 |        10 |
+|        5 | 192124177 | IT        |    28 |        16 |
+|        4 | 192124199 | IT        |    49 |        13 |
++----------+-----------+-----------+-------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select*from course9 where assesment>15;
+ERROR 1146 (42S02): Table 'college.course9' doesn't exist
+
+mysql> select*from course3 where assesment>15;
++----------+-----------+-----------+-------+-----------+
+| courseno | regno     | cousename | marks | assesment |
++----------+-----------+-----------+-------+-----------+
+|        5 | 192124177 | IT        |    28 |        16 |
++----------+-----------+-----------+-------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select*from course3 where assesment<15;
++----------+-----------+-----------+-------+-----------+
+| courseno | regno     | cousename | marks | assesment |
++----------+-----------+-----------+-------+-----------+
+|        3 | 192124133 | AI        |    58 |        10 |
+|        4 | 192124199 | IT        |    49 |        13 |
++----------+-----------+-----------+-------+-----------+
+2 rows in set (0.00 sec)
