@@ -1,0 +1,101 @@
+mysql> create table studentview(regno int(13),name varchar(14),DOB int(13));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc studentview;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| regno | int(13)     | YES  |     | NULL    |       |
+| name  | varchar(14) | YES  |     | NULL    |       |
+| DOB   | int(13)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.05 sec)
+
+mysql> insert into studentview values(192211744,"pardhu","2207");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into studentview values(192211745,"subhani","2209");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into studentview values(192211746,"purush","2286");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into studentview values(192211678,"ramkumar","6579");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into studentview values(192211677,"rameshreddy","3344");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into studentview values(192211766,"chenna","2322");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into studentview values(192211456,"charan","4546");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from studentview;
++-----------+-------------+------+
+| regno     | name        | DOB  |
++-----------+-------------+------+
+| 192211744 | pardhu      | 2207 |
+| 192211745 | subhani     | 2209 |
+| 192211746 | purush      | 2286 |
+| 192211678 | ramkumar    | 6579 |
+| 192211677 | rameshreddy | 3344 |
+| 192211766 | chenna      | 2322 |
+| 192211456 | charan      | 4546 |
++-----------+-------------+------+
+7 rows in set (0.00 sec)
+
+mysql> select*from DOB_view;
+ERROR 1146 (42S02): Table 'college.dob_view' doesn't exist
+mysql> select*from studentview DOB_view;
++-----------+-------------+------+
+| regno     | name        | DOB  |
++-----------+-------------+------+
+| 192211744 | pardhu      | 2207 |
+| 192211745 | subhani     | 2209 |
+| 192211746 | purush      | 2286 |
+| 192211678 | ramkumar    | 6579 |
+| 192211677 | rameshreddy | 3344 |
+| 192211766 | chenna      | 2322 |
+| 192211456 | charan      | 4546 |
++-----------+-------------+------+
+7 rows in set (0.00 sec)
+
+mysql> create view DOB_view as select regno,name from studentview;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select*from DOB_view;
++-----------+-------------+
+| regno     | name        |
++-----------+-------------+
+| 192211744 | pardhu      |
+| 192211745 | subhani     |
+| 192211746 | purush      |
+| 192211678 | ramkumar    |
+| 192211677 | rameshreddy |
+| 192211766 | chenna      |
+| 192211456 | charan      |
++-----------+-------------+
+7 rows in set (0.01 sec)
+
+mysql> create index DOB on studentview(DOB);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index fron studentview;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version
+ for the right syntax to use near 'fron studentview' at line 1
+mysql> show index from studentview;
++-------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------
++------------+---------+---------------+
+| Table       | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null
+| Index_type | Comment | Index_comment |
++-------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------
++------------+---------+---------------+
+| studentview |          1 | DOB      |            1 | DOB         | A         |           7 |     NULL | NULL   | YES
+| BTREE      |         |               |
++-------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------
++------------+---------+---------------+
+1 row in set (0.00 sec)
+
