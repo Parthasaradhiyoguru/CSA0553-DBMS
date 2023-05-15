@@ -1,0 +1,74 @@
+mysql> create table sub1(coursename varchar(9),courseno int(8));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into sub1 values("AI","4");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into  sub1 values("Cprogram","2");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sub1 values("DBMS","2");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sub1 values("maths","6");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sub1 values("OS","3");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from sub1;
++------------+----------+
+| coursename | courseno |
++------------+----------+
+| AI         |        4 |
+| Cprogram   |        2 |
+| DBMS       |        2 |
+| maths      |        6 |
+| OS         |        3 |
++------------+----------+
+5 rows in set (0.00 sec)
+mysql> select*from studentdata9;
++-------+--------+--------+------+----------+---------+
+| regno | name   | gender | DOB  | mobileno | city    |
++-------+--------+--------+------+----------+---------+
+|   123 | sam    | male   |   10 |    45312 | mumbai  |
+|   234 | anu    | female |   14 |   555211 | chennai |
+|   345 | john   | male   |   20 |   452352 | chennai |
+|   456 | smitha | female |   30 |  4245312 | pune    |
++-------+--------+--------+------+----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select name,gender,mobileno from studentdata9 order by regno;
++--------+--------+----------+
+| name   | gender | mobileno |
++--------+--------+----------+
+| sam    | male   |    45312 |
+| anu    | female |   555211 |
+| john   | male   |   452352 |
+| smitha | female |  4245312 |
++--------+--------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select*from faculty9;
++-------+---------+--------+------+------+----------+----------+
+| facno | facname | gender | DOB  | DOJ  | mobileno | deptname |
++-------+---------+--------+------+------+----------+----------+
+|     1 | sam     | male   |   10 |   12 |   452368 | AI       |
+|     2 | smitha  | female |   20 |    2 |   452538 | CSC      |
+|     3 | smith   | male   |   30 |    4 |    45318 | IT       |
+|     4 | aana    | female |   90 |    6 |    45898 | eee      |
++-------+---------+--------+------+------+----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select*from faculty order by DOB DESC;
+ERROR 1146 (42S02): Table 'college.faculty' doesn't exist
+mysql> select*from faculty9 order by DOB DESC;
++-------+---------+--------+------+------+----------+----------+
+| facno | facname | gender | DOB  | DOJ  | mobileno | deptname |
++-------+---------+--------+------+------+----------+----------+
+|     4 | aana    | female |   90 |    6 |    45898 | eee      |
+|     3 | smith   | male   |   30 |    4 |    45318 | IT       |
+|     2 | smitha  | female |   20 |    2 |   452538 | CSC      |
+|     1 | sam     | male   |   10 |   12 |   452368 | AI       |
++-------+---------+--------+------+------+----------+----------+
+4 rows in set (0.00 sec)
