@@ -1,0 +1,68 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| college            |
+| hospital           |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use college;
+Database changed
+mysql> create table table7(id int(10),name varchar(30),class varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into table7 values(1,"ramkumar","MBA");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into table7 values(2,"ramesh","MCA");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into table7 values(3,"rajasree","btech");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into table7 values(4,"ramprasad","mtech");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into table7 values(5,"ravikumar","mtech");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> delimiter //
+mysql> create procedure list_name(INOUT name_list varchar(4000))
+    ->    begin
+    ->    declare is_done INTEGER DEFAULT 0;
+    ->    declare s_name varchar(100)DEFAULT "";
+    ->    declare stud_cursor CURSOR FOR
+    ->    select name FROM table7;
+    ->    declare continue handler for not found set is_done=1;
+    ->    open stud_cursor;
+    ->    get_list:LOOP
+    ->    fetch stud_cursor into s_name;
+    ->    if is_done=1 then
+    ->    leave get_list;
+    ->    end if;
+    ->    set name_list=CONCAT(s_name,",",name_list);
+    ->   end loop get_list;
+    ->   close stud_cursor;
+    -> end//
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SET @name_list ="";
+    -> CALL list_name(@name_list);
+    -> SELECT @name_list;
+    -> end//
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
++-----------------------------------------------+
+| @name_list                                    |
++-----------------------------------------------+
+| ravikumar,ramprasad,rajasree,ramesh,ramkumar, |
++-----------------------------------------------+
+1 row in set (0.01 sEC)
