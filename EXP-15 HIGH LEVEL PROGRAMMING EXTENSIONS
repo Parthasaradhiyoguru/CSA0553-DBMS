@@ -1,0 +1,41 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| college            |
+| hospital           |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+7 rows in set (0.03 sec)
+
+mysql> use college;
+Database changed
+mysql> DELIMITER  //
+mysql> CREATE FUNCTION Sample9(bonus INT)
+    ->    RETURNS INT
+    ->    BEGIN
+    ->       DECLARE income INT;
+    ->       SET income = 0;
+    ->       myLabel: LOOP
+    ->          SET income = income + bonus;
+    ->          IF income<10000 THEN
+    ->             ITERATE myLabel;
+    ->          END IF;
+    ->          LEAVE myLabel;
+    ->      END LOOP myLabel;
+    -> RETURN income;
+    -> END; //
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> DELIMITER ;
+mysql> SELECT Sample(1000);
++--------------+
+| Sample(1000) |
++--------------+
+|        10000 |
++--------------+
+1 row in set (0.00 sec)
